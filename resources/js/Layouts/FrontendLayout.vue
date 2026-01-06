@@ -6,7 +6,7 @@
         <router-link to="/" class="hover:underline">Home</router-link>
         <router-link to="/about" class="hover:underline">About</router-link>
         <router-link to="/contact" class="hover:underline">Contact</router-link>
-        <router-link to="/my-course" class="hover:underline">My-Courses</router-link>
+        <router-link to="/my-course" class="hover:underline">MyCourses</router-link>
       </nav>
     </header>
 
