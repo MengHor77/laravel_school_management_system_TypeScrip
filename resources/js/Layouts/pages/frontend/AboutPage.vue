@@ -8,7 +8,7 @@
       </div>
     </section>
 
-    <!-- About Mission & Vision -->
+    <!-- Mission & Vision -->
     <section class="py-12 bg-gray-100">
       <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
         <!-- Mission -->
@@ -31,7 +31,7 @@
       </div>
     </section>
 
-    <!-- Values Section -->
+    <!-- Values -->
     <section class="py-12">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold mb-8">Our Core Values</h2>
@@ -61,47 +61,24 @@
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold mb-8">Meet Our Team</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="bg-white shadow rounded-lg p-6">
+          <div
+            v-for="member in teamMembers"
+            :key="member.id"
+            class="bg-white shadow rounded-lg p-6"
+          >
             <img
-              src="/images/team1.jpg"
-              alt="Team Member"
+              :src="`/storage/profile/${member.image}`"
+              :alt="member.name"
               class="w-32 h-32 mx-auto rounded-full object-cover mb-4"
             />
-            <h3 class="text-xl font-semibold">John Doe</h3>
-            <p class="text-gray-600">Principal</p>
-          </div>
-          <div class="bg-white shadow rounded-lg p-6">
-            <img
-              src="/images/team2.jpg"
-              alt="Team Member"
-              class="w-32 h-32 mx-auto rounded-full object-cover mb-4"
-            />
-            <h3 class="text-xl font-semibold">Jane Smith</h3>
-            <p class="text-gray-600">Vice Principal</p>
-          </div>
-          <div class="bg-white shadow rounded-lg p-6">
-            <img
-              src="/images/team3.jpg"
-              alt="Team Member"
-              class="w-32 h-32 mx-auto rounded-full object-cover mb-4"
-            />
-            <h3 class="text-xl font-semibold">Michael Lee</h3>
-            <p class="text-gray-600">Lead Teacher</p>
-          </div>
-          <div class="bg-white shadow rounded-lg p-6">
-            <img
-              src="/images/team4.jpg"
-              alt="Team Member"
-              class="w-32 h-32 mx-auto rounded-full object-cover mb-4"
-            />
-            <h3 class="text-xl font-semibold">Sara Khan</h3>
-            <p class="text-gray-600">Administrator</p>
+            <h3 class="text-xl font-semibold">{{ member.name }}</h3>
+            <p class="text-gray-600">{{ member.role }}</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Optional Call to Action -->
+    <!-- Call to Action -->
     <section class="py-12 bg-indigo-600 text-white">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-bold mb-4">Join Our School Today!</h2>
@@ -118,10 +95,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
+
+interface TeamMember {
+  id: number;
+  name: string;
+  role: string;
+  image: string; // filename stored in storage/app/public/profile/
+}
 
 export default defineComponent({
   name: "AboutPage",
+  setup() {
+    const teamMembers = ref<TeamMember[]>([
+      { id: 1, name: "John Doe", role: "Principal", image: "image.png" },
+      { id: 2, name: "Jane Smith", role: "Vice Principal", image: "image.png" },
+      { id: 3, name: "Michael Lee", role: "Lead Teacher", image: "image.png" },
+      { id: 4, name: "Sara Khan", role: "Administrator", image: "image.png" },
+    ]);
+
+    return {
+      teamMembers,
+    };
+  },
 });
 </script>
 
