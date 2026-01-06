@@ -1,19 +1,18 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import HomePage from '../Layouts/pages/frontend/HomePage.vue';
-import AboutPage from '../Layouts/pages/frontend/AboutPage.vue';
-import ContactPage from '../Layouts/pages/frontend/ContactPage.vue';
-import MyCoursePage from '../Layouts/pages/frontend/MyCoursePage.vue';
+import { createRouter, createWebHistory } from "vue-router";
 
-const routes: Array<RouteRecordRaw> = [
-    { path: '/', name: 'Home', component: HomePage },
-    { path: '/about', name: 'About', component: AboutPage },
-    { path: '/contact', name: 'Contact', component: ContactPage },
-    { path: '/my-course', name: 'MyCourse', component: MyCoursePage },
+import HomePage from "@/Layouts/pages/frontend/HomePage.vue";
+import LoginPage from "@/Layouts/pages/frontend/LoginPage.vue";
+import RegisterPage from "@/Layouts/pages/frontend/RegisterPage.vue";
+import MyCoursePage from "@/Layouts/pages/frontend/MyCoursePage.vue";
+
+const routes = [
+  { path: "/", component: HomePage },
+  { path: "/login", component: LoginPage },
+  { path: "/register", component: RegisterPage },
+  { path: "/my-course", component: MyCoursePage },
 ];
 
-const router = createRouter({
-    history: createWebHistory(),
-    routes,
+export default createRouter({
+  history: createWebHistory(),
+  routes,
 });
-
-export default router;

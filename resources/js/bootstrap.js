@@ -1,4 +1,7 @@
-import axios from 'axios';
-window.axios = axios;
+import axios from "axios";
 
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.baseURL = "http://localhost"; // optional, can remove
+axios.defaults.withCredentials = true;
+axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+
+export default axios;
