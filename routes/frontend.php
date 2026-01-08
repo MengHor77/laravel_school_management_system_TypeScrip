@@ -23,3 +23,4 @@ Route::middleware('auth')->get('/my-course', [MyCourseController::class, 'index'
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'store']);
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
