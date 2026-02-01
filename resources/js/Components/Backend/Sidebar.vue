@@ -9,7 +9,7 @@
         >
             <div v-if="!collapsed" class="overflow-hidden whitespace-nowrap">
                 <h1
-                    class="font-bold text-lg uppercase tracking-widest text-green-400"
+                    class="font-bold text-lg uppercase tracking-widest text-primary"
                 >
                     Admin SM
                 </h1>
@@ -18,14 +18,14 @@
             <button
                 @click="toggleSidebar"
                 type="button"
-                class="flex items-center justify-center p-2 rounded-lg transition-all duration-300 hover:bg-gray-700"
+                class="flex items-center justify-center p-2 rounded-lg transition-all duration-300 hover:bg-neutral-700"
             >
                 <i
                     :class="[
                         collapsed
                             ? 'fas fa-angle-double-right'
                             : 'fas fa-angle-double-left',
-                        'text-2xl transition-colors duration-300 text-gray-400 hover:text-red-500',
+                        'text-2xl transition-colors duration-300 text-neutral-400 hover:text-danger',
                     ]"
                 ></i>
             </button>
@@ -39,8 +39,8 @@
                 class="flex items-center h-12 rounded-lg transition-all duration-300 group overflow-hidden"
                 :class="[
                     $page.url.startsWith(item.route)
-                        ? 'bg-green-500/10 text-green-400 font-bold border-l-4 border-green-400'
-                        : 'text-gray-400 hover:bg-gray-800',
+                        ? 'bg-primary/10 text-primary font-bold border-l-4 border-primary'
+                        : 'text-neutral-400 hover:bg-sidebarSoft hover:text-white',
                     collapsed ? 'justify-center' : 'px-4',
                 ]"
             >
@@ -65,7 +65,7 @@
         </nav>
 
         <div
-            class="p-4 border-t border-gray-800 text-center text-gray-500 text-xs"
+            class="p-4 border-t border-neutral-800 text-center text-neutral-500 text-xs"
         >
             <span>{{ collapsed ? "©" : "© 2026 Admin SM" }}</span>
         </div>
@@ -74,11 +74,12 @@
 
 <script setup lang="ts">
 import { ref, reactive } from "vue";
-import { Link } from "@inertiajs/vue3"; 
+import { Link } from "@inertiajs/vue3";
 
 const collapsed = ref<boolean>(
     localStorage.getItem("sidebar-collapsed") === "true",
 );
+
 const toggleSidebar = (): void => {
     collapsed.value = !collapsed.value;
     localStorage.setItem("sidebar-collapsed", collapsed.value.toString());
@@ -97,3 +98,26 @@ const menuItems = reactive([
     { label: "Report", icon: "fas fa-chart-line", route: "/admin/report" },
 ]);
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.2s;
+}
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+/* Custom scrollbar to match your Sidebar color */
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #4b5563; /* neutral-600 */
+    border-radius: 10px;
+}
+</style>
