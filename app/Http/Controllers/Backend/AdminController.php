@@ -39,6 +39,6 @@ public function store(Request $request)
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('home'); 
+        return redirect('/admin/login');
     }
 }

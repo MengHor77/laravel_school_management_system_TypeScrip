@@ -96,7 +96,7 @@ const menuItems = reactive([
     { label: "Course", icon: "fas fa-book", route: "/admin/course" },
     { label: "Setting", icon: "fas fa-cog", route: "/admin/setting" },
     { label: "Report", icon: "fas fa-chart-line", route: "/admin/report" },
-]);
+    { label: "Logout", icon: "fas fa-sign-out-alt", route: "/admin/logout" },]);
 </script>
 
 <style scoped>
