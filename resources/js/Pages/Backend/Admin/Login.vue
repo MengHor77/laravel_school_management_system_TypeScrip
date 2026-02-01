@@ -38,9 +38,18 @@
                             required
                             autocomplete="current-password"
                         />
-                        <button  class=" absolute">
-                            
-                          <i class="fas fa-eye"></i>
+                        <button
+                        type="button"
+                         class="absolute right-2 top-3"
+                         @click="showPassword = !showPassword"
+                         >
+                            <font-awesome-icon
+                                :icon="
+                                    showPassword
+                                        ? 'fa-solid fa-eye-slash'
+                                        : 'fa-solid fa-eye'
+                                "
+                            />
                         </button>
                     </div>
 
@@ -53,7 +62,9 @@
                         </button>
                     </div>
                     <div>
-                        <span class="text-sm text-gray-600 hover:text-gray-900 cursor-pointer hover:underline">
+                        <span
+                            class="text-sm text-gray-600 hover:text-gray-900 cursor-pointer hover:underline"
+                        >
                             forgot password
                         </span>
                     </div>
@@ -67,6 +78,9 @@
 const handleLogin = () => {
     console.log("Login attempted");
 };
+import { ref } from 'vue';
+const showPassword = ref(false);
+
 </script>
 
 <style scoped>

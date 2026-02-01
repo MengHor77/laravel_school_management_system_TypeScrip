@@ -8,6 +8,5 @@
 
 <script setup lang="ts">
 import FrontendLayout from "@/Layouts/Frontend/FrontendLayout.vue";
-
 defineProps<{ test: string }>();
 </script>
