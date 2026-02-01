@@ -8,5 +8,6 @@
 </template>
 
 <script setup lang="ts">
+import { Component } from 'vue';
 import BackendLayout from '@/Layouts/Backend/BackendLayout.vue';
 </script>

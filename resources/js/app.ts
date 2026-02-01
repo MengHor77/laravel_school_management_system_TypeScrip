@@ -9,6 +9,17 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { faUser, faSchool, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
+import { 
+    
+    faChartLine, 
+    faUserGraduate, 
+    faChalkboardTeacher, 
+    faBook, 
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faSchool, faChartLine, faUserGraduate, faChalkboardTeacher, faBook, faSignOutAlt);
+
 library.add(faEye, faEyeSlash);
 library.add(faUser, faSchool, faSignOutAlt);
 
