@@ -20,7 +20,7 @@
                 <tr
                     v-for="row in data"
                     :key="row[rowKey]"
-                    class="text-sm hover:bg-neutral transition"
+                    class="text-sm hover:bg-neutral-50 transition"
                 >
                     <td
                         v-for="col in columns"
