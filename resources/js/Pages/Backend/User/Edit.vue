@@ -13,12 +13,14 @@
                     <div>
                         <label class="block text-sm font-medium mb-1">Full Name</label>
                         <input v-model="form.name" type="text" class="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-primary/20">
+                        <p v-if="form.errors.name" class="text-red-500 text-xs mt-1">{{ form.errors.name }}</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium mb-1">Email</label>
                         <input v-model="form.email" type="email" class="w-full border p-2 rounded-lg outline-none focus:ring-2 focus:ring-primary/20">
+                        <p v-if="form.errors.email" class="text-red-500 text-xs mt-1">{{ form.errors.email }}</p>
                     </div>
-                    <button type="submit" :disabled="form.processing" class="w-full bg-secondary text-white py-2 rounded-lg font-bold hover:bg-opacity-90 transition">
+                    <button type="submit" :disabled="form.processing" class="w-full bg-blue-600 text-white py-2 rounded-lg font-bold hover:bg-opacity-90 transition">
                         Update User
                     </button>
                 </form>
@@ -31,7 +33,6 @@
 import BackendLayout from '@/Layouts/Backend/BackendLayout.vue';
 import { useForm, Link } from '@inertiajs/vue3';
 
-// Local TypeScript Fix
 declare const route: any;
 
 const props = defineProps<{

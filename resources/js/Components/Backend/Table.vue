@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-bgCard rounded-xl shadow-card p-6">
+    <div class="bg-neutral-300 rounded-xl shadow p-6">
         <table class="w-full border-border rounded-lg overflow-hidden">
-            <thead class="bg-tableHeader text-sm">
+            <thead class="bg-neutral-200 text-sm">
                 <tr
                     class="bg-gray-100 rounded-lg border"
                     :style="{ backgroundColor: 'var(--table-header)' }"
@@ -20,7 +20,7 @@
                 <tr
                     v-for="row in data"
                     :key="row[rowKey]"
-                    class="text-sm hover:bg-tableRowHover transition"
+                    class="text-sm hover:bg-neutral transition"
                 >
                     <td
                         v-for="col in columns"
