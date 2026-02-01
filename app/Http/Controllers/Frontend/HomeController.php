@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend; 
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Inertia\Inertia; 
 
 class HomeController extends Controller
 {
-   
-    public function index()
+   public function index()
     {
-        return view('frontend.home'); // resources/views/frontend/home.blade.php
+        // This looks for: resources/js/Pages/Frontend/Home/Index.vue
+        return Inertia::render('Frontend/Home/Index');
     }
-
-    
 }
