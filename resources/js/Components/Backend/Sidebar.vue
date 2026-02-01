@@ -18,7 +18,7 @@
             <button
                 @click="toggleSidebar"
                 type="button"
-                class="flex items-center justify-center p-2 rounded-lg transition-all duration-300 hover:bg-neutral-700"
+                class="flex items-center justify-center  transition-all duration-300"
             >
                 <i
                     :class="[
