@@ -1,18 +1,19 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
- Route::get('/', [HomeController::class, 'index'])->name('home');
-
-// 2. Admin Group
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])->name('login');
-    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+    
+    Route::post('/login', [AdminController::class, 'store'])->name('login.store'); 
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    });
 });

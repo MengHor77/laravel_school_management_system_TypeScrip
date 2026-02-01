@@ -1,48 +1,45 @@
 <template>
-    <FronendLayout>
+    <FrontendLayout>
         <div
-            class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100"
+            class="min-h-screen flex flex-col sm:justify-center items-center bg-gray-100"
         >
             <div
-                class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
+                class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md rounded-lg"
             >
-                <div>
-                    <h1 class="text-3xl font-bold mb-4">Admin Login</h1>
-                </div>
-                <form @submit.prevent="handleLogin">
+                <h1 class="text-3xl font-bold mb-4">Admin Login</h1>
+
+                <form @submit.prevent="submit">
                     <div>
-                        <label
-                            for="email"
-                            class="block font-medium text-sm text-gray-700"
-                            >Email</label
-                        >
+                        <label class="block text-sm text-gray-700">Email</label>
                         <input
-                            id="email"
                             type="email"
-                            class="mt-1 block w-full"
+                            v-model="form.email"
+                            class="mt-1 block w-full rounded-md border-gray-300"
                             required
-                            autofocus
                         />
+                        <div
+                            v-if="form.errors.email"
+                            class="text-red-500 text-xs mt-1"
+                        >
+                            {{ form.errors.email }}
+                        </div>
                     </div>
 
                     <div class="mt-4 relative">
-                        <label
-                            for="password"
-                            class="block font-medium text-sm text-gray-700"
+                        <label class="block text-sm text-gray-700"
                             >Password</label
                         >
                         <input
-                            id="password"
-                            type="password"
-                            class="mt-1 block w-full"
+                            :type="showPassword ? 'text' : 'password'"
+                            v-model="form.password"
+                            class="mt-1 block w-full rounded-md border-gray-300"
                             required
-                            autocomplete="current-password"
                         />
                         <button
-                        type="button"
-                         class="absolute right-2 top-3"
-                         @click="showPassword = !showPassword"
-                         >
+                            type="button"
+                            @click="showPassword = !showPassword"
+                            class="absolute right-3 top-9"
+                        >
                             <font-awesome-icon
                                 :icon="
                                     showPassword
@@ -51,38 +48,41 @@
                                 "
                             />
                         </button>
+                        <div
+                            v-if="form.errors.password"
+                            class="text-red-500 text-xs mt-1"
+                        >
+                            {{ form.errors.password }}
+                        </div>
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
                         <button
                             type="submit"
-                            class="ml-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                            :disabled="form.processing"
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md"
                         >
-                            Login
+                            {{ form.processing ? "Logging in..." : "Login" }}
                         </button>
-                    </div>
-                    <div>
-                        <span
-                            class="text-sm text-gray-600 hover:text-gray-900 cursor-pointer hover:underline"
-                        >
-                            forgot password
-                        </span>
                     </div>
                 </form>
             </div>
         </div>
-    </FronendLayout>
+    </FrontendLayout>
 </template>
 
 <script setup lang="ts">
-const handleLogin = () => {
-    console.log("Login attempted");
-};
-import { ref } from 'vue';
+import FrontendLayout from "@/Layouts/Frontend/FrontendLayout.vue";
+import { useForm } from "@inertiajs/vue3";
+import { ref } from "vue";
+
+declare var route: any;
 const showPassword = ref(false);
+const form = useForm({ email: "", password: "", remember: false });
 
+const submit = () => {
+    form.post(route("admin.login.store"), {
+        onFinish: () => form.reset("password"),
+    });
+};
 </script>
-
-<style scoped>
-/* Your styles here */
-</style>
